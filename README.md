@@ -56,7 +56,7 @@ Math.max() ( https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/G
 
 Destructuring Assignment( https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Atribuicao_via_desestruturacao ).
 
-Matrix Array.from() 1.( https://www.devmedia.com.br/javascript-arrays/4079 ) 2.( https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/from ).
+Matriz Array.from() 1.( https://www.devmedia.com.br/javascript-arrays/4079 ) 2.( https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/from ).
 
 
 ```javascript

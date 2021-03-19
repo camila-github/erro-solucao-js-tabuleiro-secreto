@@ -1,7 +1,8 @@
-## Treinamento Digital Innovation One - Exercicio - O Tabuleiro Secreto
+## Exercicio - O Tabuleiro Secreto
 
 O exercicio publicado é referente ao treinamento do BOOTCAMP - Desenvolvedor NodeJS -  Resolvendo Algoritmos Com JavaScript.
 (https://digitalinnovation.one)
+
 
 #### Descrição do Desafio:
 
@@ -22,6 +23,7 @@ Milli não é muito bom com computadores, mas é bastante preguiçoso. Sabendo q
 #### Entrada:
 
 A primeira linha da entrada é composta por dois inteiros N e Q (1 ≤ N, Q ≤ 105), representando, respectivamente, o tamanho do tabuleiro e a quantidade de operações. As próximas Q linhas da entrada vão conter as Q operações. O primeiro inteiro de cada linha vai indicar o tipo da operação. Caso seja 1 ou 2, será seguido por mais dois inteiros X (1 ≤ X ≤ N) e R (0 ≤ R ≤ 50). Caso seja 3 ou 4, será seguido por apenas mais um inteiro X.
+
 
 #### Saída:
 
@@ -46,7 +48,6 @@ Exemplos de Entrada  | Exemplos de Saída
 4 3 |
 
 
-
 #### Link Referência:
 https://github.com/trepichio/DIOBootcampNodejs-Desafios/blob/master/06-Resolvendo%20Algoritmos%20com%20JavaScript/Desafio-05.js
 
@@ -60,7 +61,66 @@ Matriz Array.from() 1.( https://www.devmedia.com.br/javascript-arrays/4079 ) 2.(
 
 
 ```javascript
-// SOLUCAO 1
+//SOLUCAO 1
+
+/*VERIFICA O TIPO DE OPERAÇÃO*/
+const operacoes = (tipOper, tab, linCol, valorR) => {
+    let saidaDados = '';
+    /*Operador 1, os valores de 'valorR' serão atribuidos no tabuleiro em linhas */
+    if (tipOper == '1') for (let i = 0; i < tab.length; i++) tab[linCol - 1][i] = valorR;
+
+    /*Operador 2, os valores de 'valorR' serão atribuidos no tabuleiro em colunas */
+    if (tipOper == '2') for (let i = 0; i < tab.length; i++) tab[i][linCol - 1] = valorR;
+
+    /*Operador 3, soma na variavel 'saidaDados', a quantidade de vezes que um numero
+    se repete na linha do tabuleiro.Nesse trecho é chamado a função lerRepeticoes*/
+    if (tipOper == '3') saidaDados += lerRepeticoes(tab[linCol - 1]) + '\n';
+
+    /*Operador 4, soma na variavel 'saidaDados', a quantidade de vezes que um numero
+    se repete na coluna do tabuleiro. Nesse trecho é chamado a função lerRepeticoes*/
+    if (tipOper == '4') saidaDados += lerRepeticoes(tab.map(linha => linha[linCol - 1])) + '\n';
+    
+    return saidaDados;
+}
+ 
+/*VERIFICA QUANTIDADE DE VEZES QUE UM NUMERO SE REPETE NA COLUNA OU LINHA DO TABULEIRO*/
+const lerRepeticoes = (tabuleiro) => {
+    let array = [], numQueRepete = tabuleiro[0], contarRepeticoes = 0;
+    for (num of tabuleiro) {
+        (array[num] == null) ? array[num] = 0 : array[num]++;
+        if (array[num] > contarRepeticoes) contarRepeticoes = array[numQueRepete = num];
+        if (array[num] === contarRepeticoes) numQueRepete = Math.max(numQueRepete, num)
+    }
+    return numQueRepete;
+}
+
+/*CRIA TABULEIRO*/
+/* Criado uma matriz com o tamanho de acordo com a entrada, referente o tamanho do tabuleiro. 
+A matriz terá o valor inicial de 0 (.fill(0))*/
+const criarTabuleiro = (tamTabuleiro) => Array.from(Array(parseInt(tamTabuleiro)), () => new Array(parseInt(tamTabuleiro)).fill(0));
+
+/*ENTRADA DE DADOS*/
+(function main(entradaDados){
+    while (entradaDados) {
+        /*.split(" ") -  separa cada string para armazenar em um array de atribuição via 
+        desestruturação (destructuring assignment). 'Tamanho do Tabuleiro' e 'Quantidade de Operações'*/
+        let [tamTabuleiro, quantOperacoes] = entradaDados.split(" ");
+        let tabuleiro = criarTabuleiro(tamTabuleiro);
+        while (quantOperacoes--) {
+            /*.split(" ") -  separa cada string para armazenar em um array de atribuição via 
+            desestruturação (destructuring assignment). 'Tipo da Operação', 
+            'Linha e Coluna' e 'ValorR'*/
+            let [tipoOperacao, LinhaColuna, valorR] = gets().split(" ")
+            /*Será chamado a função (operacoes). Imprime o resultado*/
+            console.log(operacoes(tipoOperacao, tabuleiro, parseInt(LinhaColuna), parseInt(valorR)));
+        }
+    entradaDados = gets();
+    }
+})(gets());
+
+
+
+// SOLUCAO 2
 let saidaDados = '';
 /*ENTRADA DE DADOS*/
 while ((entradaDados = gets())) {
@@ -75,7 +135,7 @@ while ((entradaDados = gets())) {
     while (quantOperacoes--) {
         /*.split(" ") -  separa cada string para armazenar em um array de atribuição via 
         desestruturação (destructuring assignment). 'Tipo da Operação', 
-        'Tipo da Operação com dois inteiros' e 'Tipo da Operação com um inteiro'*/
+        'Linha e coluna' e 'valorR'*/
         let [tipoOperacao, LinhaColuna, valorR] = gets().split(" ");
 
         /*Será chamado a função (operacoes)*/

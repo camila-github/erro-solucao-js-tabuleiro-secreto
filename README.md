@@ -1,7 +1,6 @@
 ## Exercicio - O Tabuleiro Secreto
 
-O exercicio publicado é referente ao treinamento do BOOTCAMP - Desenvolvedor NodeJS -  Resolvendo Algoritmos Com JavaScript.
-(https://digitalinnovation.one)
+O exercicio publicado é referente ao treinamento do BOOTCAMP - Desenvolvedor NodeJS -  Resolvendo Algoritmos Com JavaScript. [https://digitalinnovation.one](https://digitalinnovation.one)
 
 
 #### Descrição do Desafio:
